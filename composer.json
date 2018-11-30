@@ -1,0 +1,8 @@
+{
+    "name": "colours/fancy-local-tasks",
+    "keywords": ["Drupal"],
+    "description": "Drupal 8 module that adds sticky local tasks bar to the bottom of the page",
+    "type": "drupal-module",
+    "license": "GPL-2.0+",
+    "require": {}
+}
