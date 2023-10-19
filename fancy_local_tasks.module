@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains customization.module..
+ * Provide module that adds sticky local tasks bar to the bottom of the page.
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -14,8 +14,7 @@ function fancy_local_tasks_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     // Main module help for the customization module.
     case 'help.page.fancy_local_tasks':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
+      $output = '<h3>' . t('About') . '</h3>';
       $output .= '<p>' . t('Fancy local tasks module') . '</p>';
       return $output;
 
@@ -28,7 +27,8 @@ function fancy_local_tasks_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook__preprocess_page().
  */
 function fancy_local_tasks_preprocess_page(&$variables) {
-  if ($variables['logged_in'] && !\Drupal::service('router.admin_context')->isAdminRoute()) {
+  if ($variables['logged_in'] && !\Drupal::service('router.admin_context')
+      ->isAdminRoute()) {
     $variables['#attached']['library'][] = 'fancy_local_tasks/fancy-local-tasks';
   }
 }
@@ -37,8 +37,7 @@ function fancy_local_tasks_preprocess_page(&$variables) {
  * Implements hook_theme_registry_alter().
  */
 function fancy_local_tasks_theme_registry_alter(&$theme_registry) {
-
   if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
-    $theme_registry['menu_local_tasks']['path'] = drupal_get_path('module', 'fancy_local_tasks') . '/templates';
+    $theme_registry['menu_local_tasks']['path'] = Drupal\Core\Extension\ExtensionPathResolver::getPath('module', 'fancy_local_tasks') . '/templates';
   }
 }
