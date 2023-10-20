@@ -1,5 +1,5 @@
 name: Fancy local tasks
 type: module
 description: Adds sticky local tasks bar to the bottom of the page
-core_version_requirement: 8.x || ^9
+core_version_requirement: ^9.5 || ^10.1
 package: Colours
